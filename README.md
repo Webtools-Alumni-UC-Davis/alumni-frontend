@@ -44,7 +44,7 @@ The frontend application has the following dependencies:
 
 **Clone the repository**:
 
-```git clone <https://github.com/kellyhp/alumni-frontend>```
+```git clone https://github.com/kellyhp/alumni-frontend>](https://github.com/Webtools-Alumni-UC-Davis/alumni-frontend```
 
 **Install dependencies**:
 
