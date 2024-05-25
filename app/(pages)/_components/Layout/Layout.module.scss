@@ -1,0 +1,60 @@
+@use "app/(pages)/_globals/mixins";
+
+.mains {
+  position: fixed;
+  padding-left: 22%;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  padding-bottom: 4%;
+  color: var(--blue);
+  @include mixins.tablet {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0%;
+    align-items: center;
+    padding-bottom: 30%;
+    margin-top: 20%;
+  }
+  z-index: -20;
+}
+
+.ColRow {
+  display: flex;
+  width: fit-content;
+  flex-direction: row;
+  gap: 2%;
+  @include mixins.tablet {
+    margin-top: 5%;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+  }
+}
+
+.RowCol {
+  display: flex;
+  width: fit-content;
+  flex-direction: column;
+  gap: 2%;
+  @include mixins.tablet {
+    justify-items: center;
+  }
+}
+
+.marginTop {
+  margin-top: 2%;
+  @include mixins.tablet {
+      margin-top: 5%;
+  }
+}
+
+.home {
+  width: 100%;
+  height: 100%;
+  background-color: var(--light-background);
+  z-index: 10;
+  top: 0;
+  left: 0;
+  position: fixed;
+}

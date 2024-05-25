@@ -1,0 +1,25 @@
+@use "app/(pages)/_globals/mixins";
+
+.resultcontainer{
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightblue {
+    background-color: var(--light-blue);
+    color: var(--black);
+    width: fit-content;
+    padding: var(--spacer) var(--small-spacer);
+    gap: var(--tiny-spacer);
+    border-radius: var(--b-radius);
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--b-shadow);
+    width: 900px;
+    @include mixins.tablet {
+        width: 300px;
+    }
+}

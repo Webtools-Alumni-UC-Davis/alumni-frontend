@@ -1,0 +1,64 @@
+@use "app/(pages)/_globals/mixins";
+
+.contentcontainer{
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: var(--small-spacer);
+    gap: var(--tiny-spacer);
+    width: 100%;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    gap: var(--tiny-spacer);
+    > .underline {
+        text-decoration: underline;
+    }
+}
+
+.intel{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    @include mixins.tablet {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.intelcolumn{
+    display: flex;
+    flex-direction: column;
+    gap: var(--tiny-spacer);
+    width: 48%;
+    height: fit-content;
+    display: relative;
+    @include mixins.tablet {
+        width: 100%;
+        margin-bottom: 2%;
+    }
+}
+
+.intelcontent{
+    width: 48%;
+    height: fit-content;
+    display: relative;
+    @include mixins.tablet {
+        width: 100%;
+    }
+}
+
+.bold{
+    font-weight: 700;
+}
+
+.line {
+    background-color: var(--black);
+    height: 1px;
+    width: 100%; 
+    margin-bottom: 2%;
+    margin-top: 2%;
+}

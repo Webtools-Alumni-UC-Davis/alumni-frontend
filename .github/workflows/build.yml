@@ -1,0 +1,57 @@
+name: Build Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [21.7.3]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Check Next.js version
+      run: |
+        next_version=$(npm list next | grep next@)
+        if [[ $next_version != *"next@14."* ]]; then
+          echo "Error: Next.js version is not 14.x"
+          exit 1
+        fi
+
+    - name: Run Jest tests
+      run: npm run test
+
+    - name: Build project
+      run: npm run build
+
+    - name: Start project
+      run: npm start & npx wait-on http://localhost:3000
+
+    - name: Run Lighthouse audit
+      run: |
+        npm install -g @lhci/cli@0.8.x
+        lhci autorun --upload.target=temporary-public-storage --collect.staticDistDir=.next
+
+    - name: Upload Lighthouse reports
+      uses: actions/upload-artifact@v3
+      with:
+        name: lhci-reports
+        path: ./.lighthouseci

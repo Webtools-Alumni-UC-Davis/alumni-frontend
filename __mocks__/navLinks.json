@@ -1,0 +1,39 @@
+[
+    {
+      "name": "Dashboard",
+      "slug": "/",
+      "image": "/index/Dashboard.png",
+      "type": "MENU"
+    },
+    {
+      "name": "Recommendations",
+      "slug": "/recommendations",
+      "image": "/index/Recommendation.png",
+      "type": "MENU" 
+    },
+    {
+      "name": "Alumni Directory",
+      "slug": "/directory",
+      "image": "/index/Directory.png",
+      "type": "MENU"
+    },
+    {
+      "name": "Data Comparison",
+      "slug": "/comparison",
+      "image": "/index/Comparison.png",
+      "type": "MENU" 
+    },
+    {
+      "name": "Data Export",
+      "slug": "/export",
+      "image": "/index/Export.png",
+      "type": "MENU" 
+    },
+    {
+      "name": "Settings",
+      "slug": "/settings",
+      "image": "/index/Setting.png",
+      "type": "OTHER" 
+    }
+]
+  

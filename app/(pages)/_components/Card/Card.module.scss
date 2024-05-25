@@ -1,0 +1,89 @@
+@use "app/(pages)/_globals/mixins";
+
+.darkblue {
+    background-color: var(--blue);
+    color: var(--light-background);
+    width: fit-content;
+    padding: var(--spacer) var(--small-spacer);
+    gap: var(--tiny-spacer);
+    border-radius: var(--b-radius);
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    max-width: 434px;
+    box-shadow: var(--b-shadow);
+}
+
+.lightblue {
+    background-color: var(--light-blue);
+    color: var(--black);
+    width: fit-content;
+    padding: var(--spacer) var(--small-spacer);
+    gap: var(--tiny-spacer);
+    border-radius: var(--b-radius);
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--b-shadow);
+    max-width: 430px;
+    min-width: 430px;
+    .underline {
+        font-weight: 500;
+        text-decoration: underline;
+    }
+    .bold {
+        margin-top: 2%;
+        font-weight: 600;
+    }
+}
+
+.black {
+    background-color: var(--primary);
+    color: var(--light-background);
+    width: fit-content;
+    padding: var(--spacer) var(--small-spacer);
+    gap: var(--tiny-spacer);
+    border-radius: var(--b-radius);
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--b-shadow);
+    width: fit-content;
+}
+
+.line {
+    background-color: var(--light-background);
+    height: 1px;
+    width: 100%; 
+}
+
+.RowCol {
+    display: flex;
+    flex-direction: column;
+    gap: var(--small-spacer);
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--small-spacer)/2;
+    margin-top: 2%;
+}
+
+.spacer{
+    gap: var(--small-spacer);
+    margin-top: var(--small-spacer);
+    display: flex;
+    flex-direction: column;
+}
+
+.button {
+    font-family: var(--font-sunflower);
+    color: var(--blue);
+    background-color: var(--light-background);
+    padding: var(--tiny-spacer);
+    border-radius: var(--button-radius);
+    border: solid 1px var(--black);
+    cursor: pointer;
+    font-weight: 600;
+    width: fit-content;
+}

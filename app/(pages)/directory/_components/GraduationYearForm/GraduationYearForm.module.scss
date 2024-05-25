@@ -1,0 +1,47 @@
+@use "app/(pages)/_globals/mixins";
+
+.graduationcontainer{
+    display: flex;
+    flex-direction: column;
+    gap: var(--tiny-spacer)/2;
+    @include mixins.tablet {
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.graduation{
+    border-radius: var(--button-radius);
+    border: none;
+    box-shadow: var(--b-shadow);
+    font-size: 0.9em;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    height: 40px;
+    width: 100px;
+    padding: var(--tiny-spacer);
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: var(--small-spacer);
+    align-items: center;
+}
+
+.error{
+    margin-top: 1%;
+    color: red;
+}
+
+.button {
+    border-radius: var(--b-radius);
+    box-shadow: var(--b-shadow);
+    border: none;
+    color: var(--light-background);
+    background-color: var(--blue);
+    cursor: pointer;
+    padding: var(--small-spacer);
+    height: 100%;
+    font-size: 0.9em;
+}

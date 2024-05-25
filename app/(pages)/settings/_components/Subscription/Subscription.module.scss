@@ -1,0 +1,36 @@
+@use "app/(pages)/_globals/mixins";
+
+.container {
+    padding-right: 5%;
+}
+
+.subscription {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: var(--b-radius);
+    background-color: var(--bright-blue);
+    box-shadow: var(--b-shadow);
+    padding: 2% 3%;
+    margin-top: 1%;
+}
+
+.changes {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 1%;
+    margin-top: 2%;
+}
+
+.button{
+    font-family: var(--font-sunflower);
+    color: var(--blue);
+    background-color: var(--light-background);
+    padding: var(--tiny-spacer);
+    border-radius: var(--button-radius);
+    border: solid 1px var(--black);
+    cursor: pointer;
+    font-weight: 600;
+    width: fit-content;
+}
