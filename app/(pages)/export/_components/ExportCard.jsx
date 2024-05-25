@@ -9,7 +9,7 @@ export default function ExportCard() {
     const handleExport = async () => {
         try {
             const response = await fetch(
-                "https://webtools-api.engr.ucdavis.edu/alumnis/allalumni"
+                "https://alumni-backend-6954.onrender.com/alumnis/allalumni"
             );
             const data = await response.json();
             console.log(data);

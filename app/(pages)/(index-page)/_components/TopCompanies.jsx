@@ -10,7 +10,7 @@ export default function TopCompanies() {
 
   useEffect(() => {
     // Fetch the top 5 companies data
-    fetch("https://webtools-api.engr.ucdavis.edu/alumnis/top-5-companies")
+    fetch("https://alumni-backend-6954.onrender.com/alumnis/top-5-companies")
         .then((response) => response.json())
         .then((data) => {
             setCompanyData(data);
