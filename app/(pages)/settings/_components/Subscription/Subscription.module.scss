@@ -16,11 +16,23 @@
     margin-top: 1%;
 }
 
-.changes {
+.statement {
     display: flex;
     justify-content: flex-end;
+}
+
+.changes {
+    display: flex;
+    flex-direction: column;
     padding-right: 1%;
     margin-top: 2%;
+}
+
+.button_end{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--tiny-spacer);
 }
 
 .button{
