@@ -11,10 +11,23 @@ const Subscription = () => {
   const [changesMade, setChangesMade] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
+  const [user, setUser] = useState(null);
   useEffect(() => {
     fetchSubscriptionStatus();
+    fetchRemoteUser();
   }, []);
+
+  const fetchRemoteUser = async () => {
+    try {
+      const response = await fetch(
+        'api')
+      const data = await response.json();
+      setUser(data);
+    } catch (error) {
+      console.error('Error fetching user:', error);
+    }
+  };
+  console.log(user);
 
   const fetchSubscriptionStatus = async () => {
     try {
