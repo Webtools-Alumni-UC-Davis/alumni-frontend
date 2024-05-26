@@ -2,7 +2,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from '@components/Card/Card.module.scss';
 import layout from '@components/Layout/Layout.module.scss';
-import '@fortawesome/fontawesome-free/css/all.min.css';
 
 export default function SuggestedCard() {
     const [companyData, setCompanyData] = useState(null);
@@ -85,7 +84,7 @@ export default function SuggestedCard() {
                             <p>Favorite</p>
                         </div>
                         <div className={`${styles.button} ${styles.delete}`}>
-                            <i className="fa-solid fa-trash"></i>
+                            <h5>Delete</h5>
                         </div>
                     </div>
                 </div>
