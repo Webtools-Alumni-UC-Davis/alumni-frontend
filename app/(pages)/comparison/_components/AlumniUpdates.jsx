@@ -7,14 +7,14 @@ export default function AlumniUpdates() {
 
   useEffect(() => {
     // Fetch updates data
-    fetch('https://webtools-api.engr.ucdavis.edu/compare')
-      .then(response => response.json())
-      .then(data => {
-        setUpdates(data);
-      })
-      .catch(error => {
-        console.error('Error fetching updates:', error);
-      });
+    fetch("https://alumni-backend-6954.onrender.com/compare")
+        .then((response) => response.json())
+        .then((data) => {
+            setUpdates(data);
+        })
+        .catch((error) => {
+            console.error("Error fetching updates:", error);
+        });
   }, []);
 
   return (

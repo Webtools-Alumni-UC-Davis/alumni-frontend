@@ -6,7 +6,7 @@ export default function CurrentCount() {
     const [alumniCount, setAlumniCount] = useState(null);
   
     useEffect(() => {
-      fetch("https://webtools-api.engr.ucdavis.edu/alumnis/count")
+      fetch("https://alumni-backend-6954.onrender.com/alumnis/count")
           .then((response) => response.json())
           .then((data) => {
               setAlumniCount(data.count);
