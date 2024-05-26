@@ -1,6 +1,4 @@
-export function GET(req, res) {
+export async function GET() {
     const userId = process.env.REMOTE_USER || null;
-
-    // Use the userId as needed
-    res.status(200).json({ userId });
+    return Response.json({ userId });
 }
