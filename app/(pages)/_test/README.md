@@ -732,48 +732,69 @@ button correctly.
 
 **Test Scenario:**
 
--   It renders the ExportCard component using React Testing Library\'s
-    render function.
+-   It mocks the fetch function and returns a rejected Promise with a mock error.
 
--   It expects the rendered component to contain the text \"Export Data
-    Into A CSV File Here:\" using screen.getByText.
+-   It renders the ExportCard component using React Testing Library's render function.
+
+-   It mocks the console.error function to capture the error log.
+
+-   It waits for the fetch error to be logged and checks if the error message matches 
+    the expected error using waitFor and console.error.
+
+-   It expects neither the "Loading..." text nor the "Download CSV" button to be present after the fetch error.
 
 **Expected Behavior:**
 
--   The ExportCard component should render with the \"Export Data Into A
-    CSV File Here:\" text.
+-   The ExportCard component should render with the "Export Data Into A CSV File Here:" text.
 
-#### **handles export data when clicked**
+-   The "Download CSV" button should appear after the alumni data is fetched successfully.
 
-This test case verifies that the ExportCard component handles the export
-data functionality when the download button is clicked.
+#### **shows loading state while fetching data**
+
+This test case verifies that the ExportCard component shows the loading state while fetching the alumni data.
 
 **Test Scenario:**
 
--   It mocks the fetch function using jest.fn().
+-   It mocks the fetch function and returns a resolved Promise with mock alumni data, 
+    simulating an asynchronous fetch operation.
 
--   It sets up a mock response with an array of alumni data using
-    mockResolvedValueOnce and jest.fn().mockResolvedValueOnce.
+-   It renders the ExportCard component using React Testing Library's render function.
 
--   It renders the ExportCard component using React Testing Library\'s
-    render function.
+-   It expects the rendered component to contain the "Loading..." text initially.
 
--   It finds the \"Download CSV\" button using screen.getByText.
-
--   It simulates a click event on the \"Download CSV\" button using
-    fireEvent.click.
-
--   It uses waitFor to wait for the fetch function to be called with the
-    expected URL.
-
--   It expects the fetch function to have been called once with the
-    correct URL using expect(fetch).toHaveBeenCalledTimes(1) and
-    expect(fetch).toHaveBeenCalledWith(\"https://webtools-api.engr.ucdavis.edu/alumnis/allalumni\").
+-   It waits for the "Loading..." text to disappear and the "Download CSV" button to appear using waitFor.
 
 **Expected Behavior:**
 
--   When the \"Download CSV\" button is clicked, the fetch function
-    should be called with the correct URL to fetch the alumni data.
+-   The ExportCard component should show the "Loading..." text while fetching the alumni data.
+
+-   After the data is fetched successfully, the "Loading..." text should disappear, 
+    and the "Download CSV" button should appear.
+
+#### **handles fetch error**
+
+This test case verifies that the ExportCard component handles fetch errors correctly.
+
+**Test Scenario:**
+
+-   It mocks the fetch function and returns a rejected Promise with a mock error.
+
+-   It renders the ExportCard component using React Testing Library's render function.
+
+-   It mocks the console.error function to capture the error log.
+
+-   It waits for the fetch error to be logged and checks if the error message matches the 
+    expected error using waitFor and console.error.
+
+-   It expects neither the "Loading..." text nor the "Download CSV" button to be present after the fetch error.
+
+**Expected Behavior:**
+
+-   When a fetch error occurs, the ExportCard component should log the error to the console.
+
+-   After the fetch error, neither the "Loading..." text nor the "Download CSV" 
+    button should be present on the component.
+
 
 ### **Header (Export Page)**
 

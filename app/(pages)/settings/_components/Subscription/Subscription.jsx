@@ -9,6 +9,8 @@ const Subscription = () => {
   const [originalSubscribed, setOriginalSubscribed] = useState(null);
   const [loading, setLoading] = useState(false);
   const [changesMade, setChangesMade] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     fetchSubscriptionStatus();
@@ -18,7 +20,7 @@ const Subscription = () => {
     try {
       setLoading(true);
       const response = await fetch(
-          `https://alumni-backend-6954.onrender.com/emails/check-subscription?email=${email}`
+        `https://webtools-api.engr.ucdavis.edu/emails/check-subscription?email=${email}`
       );
       const data = await response.json();
       setSubscribed(data.subscribed);
@@ -44,25 +46,42 @@ const Subscription = () => {
   const handleSaveChanges = async () => {
     try {
       setLoading(true);
-      const endpoint = subscribed ? 'https://alumni-backend-6954.onrender.com/emails/subscribe' : 
-      'https://alumni-backend-6954.onrender.com/emails/unsubscribe';
+      setSuccessMessage('');
+      setErrorMessage('');
+
+      const intendedAction = subscribed ? 'subscribe' : 'unsubscribe';
+      const oppositeAction = subscribed ? 'unsubscribe' : 'subscribe';
+
+      if (originalSubscribed === subscribed) {
+        setErrorMessage(`Already ${intendedAction}d`);
+        return;
+      }
+
+      const endpoint = subscribed
+        ? 'https://alumni-backend-6954.onrender.com/emails/subscribe'
+        : 'https://alumni-backend-6954.onrender.com/emails/unsubscribe';
+
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: email,
+          email: email, // make sure this is their actual ucdavis email
           name: 'User', // Replace with user's name
         }),
       });
+
       if (!response.ok) {
         throw new Error('Failed to save changes');
       }
+
+      setSuccessMessage(`Successfully ${intendedAction}d`);
       setOriginalSubscribed(subscribed);
       setChangesMade(false);
     } catch (error) {
       console.error('Error saving changes:', error);
+      setErrorMessage('Failed to save changes');
     } finally {
       setLoading(false);
     }
@@ -94,11 +113,17 @@ const Subscription = () => {
               id="material-switch"
             />
           </div>
-          {changesMade && (
-            <div className={styles.changes}>
-              <button onClick={handleSaveChanges} className={styles.button}>
-                Save Changes
-              </button>
+          {(changesMade || successMessage || errorMessage) && (
+            <div className={styles.statement}>
+              <div className={styles.changes}>
+                {successMessage && <p className={styles.success}>{successMessage}</p>}
+                {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+                <div className={styles.button_end}>
+                  <button onClick={handleSaveChanges} className={styles.button}>
+                    Save Changes
+                  </button>
+                </div>
+              </div>
             </div>
           )}
         </>

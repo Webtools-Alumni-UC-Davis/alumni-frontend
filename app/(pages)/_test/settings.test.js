@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor, userEvent } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Header from '../settings/_components/Header';
 import Subscription from '../settings/_components/Subscription/Subscription';
@@ -14,28 +14,28 @@ describe('Header', () => {
 });
 
 describe('Subscription', () => {
-    beforeEach(() => {
-        global.fetch = jest.fn();
+  beforeEach(() => {
+    global.fetch.mockClear();
+  });
+
+  it('renders the loading state initially', () => {
+    render(<Subscription />);
+    const loadingText = screen.getByText('Loading...');
+    expect(loadingText).toBeInTheDocument();
+  });
+
+  it('fetches and displays the subscription status', async () => {
+    const mockSubscribed = true;
+    global.fetch.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({ subscribed: mockSubscribed }),
     });
 
-    it('renders the loading state initially', () => {
-        render(<Subscription />);
-        const loadingText = screen.getByText('Loading...');
-        expect(loadingText).toBeInTheDocument();
+    render(<Subscription />);
+
+    await waitFor(() => {
+      const subscribedText = screen.getByText(mockSubscribed ? 'Subscribed' : 'Unsubscribed');
+      expect(subscribedText).toBeInTheDocument();
     });
-
-    it('fetches and displays the subscription status', async () => {
-        const mockSubscribed = true;
-        global.fetch.mockResolvedValueOnce({
-        ok: true,
-        json: async () => ({ subscribed: mockSubscribed }),
-        });
-
-        render(<Subscription />);
-
-        await waitFor(() => {
-        const subscribedText = screen.getByText(mockSubscribed ? 'Subscribed' : 'Unsubscribed');
-        expect(subscribedText).toBeInTheDocument();
-        });
-    });
+  });
 });
