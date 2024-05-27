@@ -6,7 +6,7 @@ export default function YearAlumni() {
     const [alumniCount, setAlumniCount] = useState(null);
   
     useEffect(() => {
-      fetch("https://alumni-backend-6954.onrender.com/alumnis/count/current")
+      fetch("https://webtools-api.engr.ucdavis.edu/alumnis/count/current")
           .then((response) => response.json())
           .then((data) => {
               setAlumniCount(data.count);

@@ -8,7 +8,7 @@ export default function AlumniUpdates() {
 
   useEffect(() => {
     // Fetch updates data
-    fetch("https://alumni-backend-6954.onrender.com/compare")
+    fetch("https://webtools-api.engr.ucdavis.edu/compare")
         .then((response) => response.json())
         .then((data) => {
             setUpdates(data);
