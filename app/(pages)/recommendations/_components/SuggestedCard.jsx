@@ -3,31 +3,49 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from '@components/Card/Card.module.scss';
 import layout from '@components/Layout/Layout.module.scss';
 
-export default function SuggestedCard() {
-    const [companyData, setCompanyData] = useState(null);
-
-    useEffect(() => {
-        fetchCompanyData();
-    }, []);
-
-    const fetchCompanyData = async () => {
-        try {
-            const response = await fetch(
-                "https://alumni-backend-6954.onrender.com/equity-zen/"
-            );
-            if (!response.ok) {
-                throw new Error('Failed to fetch company data');
-            }
-            const data = await response.json();
-            setCompanyData(data);
-        } catch (error) {
-            console.error('Error fetching company data:', error.message);
-        }
-    };
-
+export default function SuggestedCard({companyData, fetchCompanyData, setSuccessMessage }) {
 
     if (!companyData) {
         return <div>Loading...</div>;
+    }
+
+    const handleFavorite = async (company) => {
+        try {
+            const response = await fetch(
+                `https://alumni-backend-6954.onrender.com/equity-zen/favorite?name=${company.name}`, {
+                method: 'PUT'
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                fetchCompanyData();
+                setSuccessMessage(`${company.name} has been ${company.favorite ? 'removed from' : 'added to'} favorites.`);
+            } else {
+                console.error('Failed to fetch company data: ' + result.message);
+            }
+        } catch (error) {
+            console.error('Error making company ' + name + ' favorite');
+        }
+    }
+
+    const handleDelete = async (name) => {
+        try {
+            const response = await fetch(
+                `https://alumni-backend-6954.onrender.com/equity-zen/delete-one?name=${name}`,
+                {
+                    method: 'DELETE'
+                })
+
+            const result = await response.json();
+
+            if (response.ok) {
+                fetchCompanyData();
+                setSuccessMessage(`${name} has been deleted from recommendations.`);
+            }
+        } catch (error) {
+            console.error('Failed to delete company ' + name + ".");
+        }
     }
 
     return (
@@ -62,7 +80,7 @@ export default function SuggestedCard() {
                     </div>
                     <div className={styles.black}>
                         <h4 className={styles.bold}>UC Davis Alumni within the company:</h4>
-                        <span className={styles.line}></span>
+                        <span className={styles.line}/>
                         {company.alumnis !== null ? (
                             company.alumnis.map(alumni => (
                                 <p key={alumni._id}><a href={alumni.url} target="_blank" rel="noopener noreferrer">
@@ -75,15 +93,21 @@ export default function SuggestedCard() {
                         <div className={layout.align}>
                             <canvas width="400" height="150" />
                             <div className={styles.row}>
-                                <div style={{ backgroundColor: 'rgb(154, 173, 194)', marginRight: '5px'}}></div>
+                                <div style={{backgroundColor: 'rgb(154, 173, 194)', marginRight: '5px'}}/>
                             </div>
                         </div>
                     </div>
                     <div className={styles.RowCol}>
-                        <div className={`${styles.button} ${styles.favorite}`}>
-                            <p>Favorite</p>
+                        <div className={`${styles.button} ${styles.favorite}`}
+                        onClick={() => handleFavorite(company)}>
+                            {company.favorite === false ? (
+                                <p>Favorite</p>
+                            ) : (
+                                <p>Unfavorite</p>
+                            )}
                         </div>
-                        <div className={`${styles.button} ${styles.delete}`}>
+                        <div className={`${styles.button} ${styles.delete}`}
+                        onClick={() => handleDelete(company.name)}>
                             <h5>Delete</h5>
                         </div>
                     </div>

@@ -1,0 +1,61 @@
+@use "app/(pages)/_globals/mixins";
+
+.searchcontainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--small-spacer);
+    @include mixins.tablet {
+        justify-items: center;
+        align-items: center;
+    }
+}
+
+.searchbar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tiny-spacer)/2;
+    margin-bottom: 2%;
+}
+
+.search {
+    border-radius: var(--button-radius);
+    border: 1px solid var(--search-bar);
+    background-color: var(--search-bar);
+    padding: var(--tiny-spacer);
+    margin-top: 1%;
+    width: 625px;
+    height: 32px;
+    font-size: 0.9em;
+    @include mixins.tablet {
+        width: 100%;
+    }
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: var(--small-spacer);
+    align-items: center;
+}
+
+.error{
+    margin-top: 1%;
+    color: red;
+}
+
+.button {
+    border-radius: var(--b-radius);
+    border: 1px solid var(--blue);
+    color: var(--light-background);
+    background-color: var(--blue);
+    cursor: pointer;
+    padding: var(--small-spacer);
+    height: 100%;
+    font-size: 0.9em;
+    box-shadow: var(--b-shadow);
+}
+
+.success {
+    margin-top: 1%;
+    color: green;
+}
