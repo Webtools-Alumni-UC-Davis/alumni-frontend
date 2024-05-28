@@ -87,3 +87,68 @@
     font-weight: 600;
     width: fit-content;
 }
+
+.button.delete {
+    background-color: rgb(206, 69, 69);
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    height: 84px;
+    width: 84px;
+    border-radius: 25%;
+    border-color: white;
+    position: relative;
+}
+
+
+.button.favorite {
+    background-color: rgb(84, 182, 86);
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    height: 84px;
+    width: 84px;
+    margin-top: 2px;
+    border-radius: 25%;
+    border-color: white;
+    position: relative;
+}
+
+.button.favorite:active {
+    border-color: black;
+}
+
+.button.delete:active {
+    border-color: black;
+}
+
+.Header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+}
+
+.DropDown {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.successMessage {
+    margin-top: 1%;
+    background-color: rgb(84, 182, 86);
+}
