@@ -13,7 +13,7 @@ export default function Recommendations () {
     const [searchQuery, setSearchQuery] = useState('');
     const [companyData, setCompanyData] = useState([]);
     const [selectedOption, setSelectedOption] = useState('All');
-    const [successMessage, setSuccessMessage] = useState(''); // Add successMessage state
+    const [successMessage, setSuccessMessage] = useState('');
 
     useEffect(() => {
         fetchCompanyData();
