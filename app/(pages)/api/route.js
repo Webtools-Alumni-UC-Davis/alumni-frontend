@@ -1,4 +1,4 @@
-export async function GET() {
-    const userId = process.env.REMOTE_USER || null;
+export async function GET(request, Response) {
+    const userId =  request.headers["remote_user"];
     return Response.json({ userId });
 }
