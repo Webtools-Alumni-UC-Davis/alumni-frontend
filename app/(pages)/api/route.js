@@ -9,3 +9,9 @@ export async function GET(request) {
     console.log(userId);
     return Response.json({ userId });
 }
+
+export default function handler(req, res) {
+    res.status(200).json({
+        headers: req.headers,
+    });
+}
