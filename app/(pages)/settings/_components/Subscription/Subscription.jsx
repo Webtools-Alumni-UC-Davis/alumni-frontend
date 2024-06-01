@@ -19,8 +19,7 @@ const Subscription = () => {
 
   const fetchRemoteUser = async () => {
     try {
-      const response = await fetch(
-        'api')
+      const response = await fetch('/api')
       const data = await response.json();
       console.log(data);
       setUser(data);
