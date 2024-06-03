@@ -4,7 +4,7 @@ import styles from './Subscription.module.scss';
 import Switch from 'react-switch';
 
 const Subscription = () => {
-  const email = 'khphan@ucdavis.edu'; // Hardcoded email
+  const email = "eofriscia@ucdavis.edu";
   const [subscribed, setSubscribed] = useState(null);
   const [originalSubscribed, setOriginalSubscribed] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -75,14 +75,14 @@ const Subscription = () => {
           : "https://webtools-api.engr.ucdavis.edu/emails/unsubscribe";
 
       const response = await fetch(endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: email, // make sure this is their actual ucdavis email
-          name: 'User', // Replace with user's name
-        }),
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+              email: email, // make sure this is their actual ucdavis email
+              name: "Erin Friscia", // Replace with user's name
+          }),
       });
 
       if (!response.ok) {
