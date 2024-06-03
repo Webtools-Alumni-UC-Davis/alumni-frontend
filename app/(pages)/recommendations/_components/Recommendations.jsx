@@ -21,7 +21,8 @@ export default function Recommendations () {
 
     const fetchCompanyData = async() => {
         try {
-            let baseUrl = "https://alumni-backend-6954.onrender.com/equity-zen/search"
+            let baseUrl =
+                "https://webtools-api.engr.ucdavis.edu/equity-zen/search";
 
             const params = new URLSearchParams();
 

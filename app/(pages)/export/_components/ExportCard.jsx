@@ -12,7 +12,7 @@ export default function ExportCard() {
       setIsLoading(true);
       try {
         const response = await fetch(
-          "https://alumni-backend-6954.onrender.com/alumnis/allalumni"
+            "https://webtools-api.engr.ucdavis.edu/alumnis/allalumni"
         );
         const data = await response.json();
         setAlumniData(data);

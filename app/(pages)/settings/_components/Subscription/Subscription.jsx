@@ -11,16 +11,29 @@ const Subscription = () => {
   const [changesMade, setChangesMade] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
+  const [user, setUser] = useState(null);
   useEffect(() => {
     fetchSubscriptionStatus();
+    fetchRemoteUser();
   }, []);
+
+  const fetchRemoteUser = async () => {
+    try {
+      const response = await fetch('/api')
+      const data = await response.json();
+      console.log(data);
+      setUser(data?.userId);
+    } catch (error) {
+      console.error('Error fetching user:', error);
+    }
+  };
+  console.log(user);
 
   const fetchSubscriptionStatus = async () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `https://alumni-backend-6954.onrender.com/emails/check-subscription?email=${email}`
+          `https://webtools-api.engr.ucdavis.edu/emails/check-subscription?email=${email}`
       );
       const data = await response.json();
       setSubscribed(data.subscribed);
@@ -58,8 +71,8 @@ const Subscription = () => {
       }
 
       const endpoint = subscribed
-        ? 'https://alumni-backend-6954.onrender.com/emails/subscribe'
-        : 'https://alumni-backend-6954.onrender.com/emails/unsubscribe';
+          ? "https://webtools-api.engr.ucdavis.edu/emails/subscribe"
+          : "https://webtools-api.engr.ucdavis.edu/emails/unsubscribe";
 
       const response = await fetch(endpoint, {
         method: 'POST',

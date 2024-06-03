@@ -12,9 +12,11 @@ export default function SuggestedCard({companyData, fetchCompanyData, setSuccess
     const handleFavorite = async (company) => {
         try {
             const response = await fetch(
-                `https://alumni-backend-6954.onrender.com/equity-zen/favorite?name=${company.name}`, {
-                method: 'PUT'
-            });
+                `https://webtools-api.engr.ucdavis.edu/equity-zen/favorite?name=${company.name}`,
+                {
+                    method: "PUT",
+                }
+            );
 
             const result = await response.json();
 
@@ -32,10 +34,11 @@ export default function SuggestedCard({companyData, fetchCompanyData, setSuccess
     const handleDelete = async (name) => {
         try {
             const response = await fetch(
-                `https://alumni-backend-6954.onrender.com/equity-zen/delete-one?name=${name}`,
+                `https://webtools-api.engr.ucdavis.edu/equity-zen/delete-one?name=${name}`,
                 {
-                    method: 'DELETE'
-                })
+                    method: "DELETE",
+                }
+            );
 
             const result = await response.json();
 
